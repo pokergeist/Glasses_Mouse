@@ -1,9 +1,9 @@
 # Glasses_Mouse
 Move computer mouse using microcontroller and motion sensor board.
 
-This code is an Arduino sketch compiled using the Arduino IDE and libraries.
+This code is an Arduino sketch compiled using the Arduino IDE (v1.8.13) and libraries.
 It is being developed using:
-  * an Adafruit QT Py SAMD21 Dev Board (#4600) MCU, and
+  * an Adafruit QT Py SAMD21 Dev Board (#4600) MCU
   * the Adafruit MPU-6050 6-DoF Accel and Gyro Sensor (#3886)
   * connected to a host PC via a USB-C cable.
 

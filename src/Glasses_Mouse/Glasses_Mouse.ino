@@ -45,7 +45,7 @@ MPU6050 mpu;
 
 int16_t ax, ay, az, gx, gy, gz;
 int     vx, vy;
-// int     count=0;
+
 const int SCALING = 100;  // lower value for more mouse movement
 const int OFFSET_X = 100; // higher value for more left movement
 const int OFFSET_Y = 200; // higher value for more up movement
@@ -59,12 +59,13 @@ void setup() {
   Serial.begin(9600);
   delay(500);
   Wire.begin();
-  mpu.initialize();
+  mpu.initialize(); // sets full scale MPU6050_GYRO_FS_250 & MPU6050_ACCEL_FS_2
   if (!mpu.testConnection()) { while (1); }
 } // setup()
 
 void loop() {
-  // retrieve raw accelerometer and gyroscpe measurements
+  // retrieve raw accelerometer and gyroscope measurements
+  // angular velocity (deg/s) = g_xyz/(131 LSB/deg/s) (FS_SEL 0, +/-250 deg/s range)
   mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
   // polarity changed: left and down are negative
   vx = -(gx+OFFSET_X)/SCALING;  // was: change 300 from 0 to 355

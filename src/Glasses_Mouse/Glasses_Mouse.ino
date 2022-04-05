@@ -81,12 +81,12 @@ void setup() {
     delay(10e3);
   }
 
-  /* ignore device ID check from MPU
-  while (!mpu.testConnection()) {
-    Serial.println("mpu connection failed");
+  // Device ID check
+  if (not mpu.testConnection()) {
+    Serial << "Warning: mpu returned unxepected Device ID 0x" << _HEX(mpu.getDeviceID()) << endl
+           << "instead of 0x34 or 0x0C" << endl;
     delay(10e3);
   }
-  */
 } // setup()
 
 void loop() {

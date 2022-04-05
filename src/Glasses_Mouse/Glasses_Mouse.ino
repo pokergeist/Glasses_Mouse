@@ -59,15 +59,32 @@ const int MIN_VX  = 5;    // ignore movements below this value
 const int MIN_VY  = 5;
 const int READ_DELAY_ms = 100;  // delay between read/move loops in milliseconds
 
+int i2cPing (int addr) {
+  Wire.beginTransmission(addr);
+  return Wire.endTransmission();
+}
+
 void setup() {
   Serial.begin(9600);
   delay(500);
   Wire.begin();
   mpu.initialize(); // sets full scale MPU6050_GYRO_FS_250 & MPU6050_ACCEL_FS_2
+
+  // test I2C connectivity
+  int ping_status;
+  int mpu_addr = MPU6050_ADDRESS_AD0_LOW;
+  while ( (ping_status = i2cPing(mpu_addr)) != 0) {
+    Serial << "I2C communication problem with 0x" << _HEX(mpu_addr)
+           << ", endTransmission status is " << ping_status << endl;
+    delay(10e3);
+  }
+
+  /* ignore device ID check from MPU
   while (!mpu.testConnection()) {
     Serial.println("mpu connection failed");
     delay(10e3);
   }
+  */
 } // setup()
 
 void loop() {

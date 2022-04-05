@@ -39,6 +39,10 @@
 #include <Mouse.h>
 #include <Streaming.h>
 
+#ifndef _USING_HID
+  #error "HID not supported by this board."
+#endif
+
 MPU6050 mpu;
 
 #define BLINK_SENSOR 0
@@ -60,7 +64,10 @@ void setup() {
   delay(500);
   Wire.begin();
   mpu.initialize(); // sets full scale MPU6050_GYRO_FS_250 & MPU6050_ACCEL_FS_2
-  if (!mpu.testConnection()) { while (1); }
+  while (!mpu.testConnection()) {
+    Serial.println("mpu connection failed");
+    delay(10e3);
+  }
 } // setup()
 
 void loop() {

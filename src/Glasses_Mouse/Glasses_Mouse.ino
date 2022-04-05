@@ -73,6 +73,8 @@ void setup() {
   // test I2C connectivity
   int ping_status;
   int mpu_addr = MPU6050_ADDRESS_AD0_LOW;
+  i2cPing(mpu_addr); // sometimes returns okay on first ping
+  delay(50);
   while ( (ping_status = i2cPing(mpu_addr)) != 0) {
     Serial << "I2C communication problem with 0x" << _HEX(mpu_addr)
            << ", endTransmission status is " << ping_status << endl;

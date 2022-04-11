@@ -1,5 +1,8 @@
-# Glasses_Mouse
-Move computer mouse using microcontroller and motion sensor board.
+# Glasses Mouse
+
+__This project is Under Development__ while I work with a user to test different methodologies, e.g., mapping Vxy or pitch & yaw (via sensor fusion) to mouse movement (absolute, damped or progressive). This repo will be renamed to the more generic term "Head Mouse".
+
+### Move your computer mouse using microcontroller and motion sensor board.
 
 This code is an Arduino sketch compiled using the Arduino IDE (v1.8.13) and libraries.
 It is being developed using:
